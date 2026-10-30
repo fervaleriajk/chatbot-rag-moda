@@ -69,6 +69,14 @@ PREGUNTA:
 {pregunta}
 
 
+RESPUESTA:"""
+
+try:
+    response = client_genai.models.generate_content(
+        model="gemini-3.8-flash",
+        contents=prompt
+    )
+
     try:
         response = client_genai.models.generate_content(
             model="gemini-3.8-flash",
