@@ -93,7 +93,6 @@ RESPUESTA:"""
 
 
 st.title("👗 Chatbot RAG - Historia del Traje y la Moda")
-st.caption("Gemini + MongoDB Atlas Vector Search")
 
 with st.sidebar:
     st.header("Configuración")
