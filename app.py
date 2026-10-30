@@ -68,10 +68,23 @@ CONTEXTO:
 PREGUNTA:
 {pregunta}
 
-RESPUESTA:"""
-    response = client_genai.models.generate_content(
-        model="gemini-3.8-flash", contents=prompt)
-    return response.text
+
+    try:
+        response = client_genai.models.generate_content(
+            model="gemini-3.8-flash",
+            contents=prompt
+        )
+    except Exception as e:
+        if getattr(e, "code", None) != 503:
+            raise
+
+        response = client_genai.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=prompt
+        )
+
+    return response.text or "No se pudo generar una respuesta."
+
 
 
 st.title("👗Chatbot RAG - Historia del Traje y la Moda")
